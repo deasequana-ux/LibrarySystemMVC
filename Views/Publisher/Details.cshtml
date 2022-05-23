@@ -1,0 +1,50 @@
+﻿@model LibrarySystemMVC.Models.PublisherModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Publisher Name
+        </dt>
+
+        <dd>
+            Publisher Name
+        </dd>
+
+        <dt>
+            Publisher Phone Number
+        </dt>
+
+        <dd>
+            Publisher Phone Number
+        </dd>
+
+        <dt>
+            Publisher Address
+        </dt>
+
+        <dd>
+            Publisher Address
+        </dd>
+
+        <dt>
+            Publisher Website
+        </dt>
+
+        <dd>
+            Publisher Website
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
