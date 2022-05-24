@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            Publisher Name:
+            Publisher Name :
         </th>
         <th>
-            Phone Number:
+            Phone Number :
         </th>
         <th>
-            Address:
+            Address :
         </th>
         <th>
-            Website:
+            Website :
         </th>
         <th></th>
     </tr>
@@ -29,16 +29,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            Publisher Name:
+            @Html.DisplayFor(model => item.PublisherName)
+            
         </td>
         <td>
-            Phone Number:
+            @Html.DisplayFor(model => item.PublisherPhoneNumber)
+            
         </td>
         <td>
-            Address:
+            @Html.DisplayFor(model => item.PublisherAddress)
+            
         </td>
         <td>
-            Website:
+            @Html.DisplayFor(model => item.PublisherWebsite)
+            
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

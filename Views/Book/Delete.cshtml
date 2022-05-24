@@ -1,4 +1,4 @@
-﻿@model LibrarySystemMVC.Models.PublisherModel
+﻿@model LibrarySystemMVC.Models.BookModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,35 +12,51 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Publisher Name :
+            ISBN No :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherName)
+            @Html.DisplayFor(model => model.ISBNNO)
         </dd>
 
         <dt>
-            Phone Number :
+            Book Name :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherPhoneNumber)
+            @Html.DisplayFor(model => model.BookName)
         </dd>
 
         <dt>
-            Address :
+            Page Number :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherAddress)
+            @Html.DisplayFor(model => model.PageNumber)
         </dd>
 
         <dt>
-            Website : 
+            Language :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherWebsite)
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+
+        <dt>
+            Category :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            Number Of Book :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfBook)
         </dd>
 
     </dl>
