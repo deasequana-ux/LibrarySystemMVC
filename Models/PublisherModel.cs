@@ -23,6 +23,9 @@ namespace LibrarySystemMVC.Models
         [BsonElement("PublisherWebsite")]
         public string PublisherWebsite { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime PublishYear { get; set; }
+
 
     }
 }

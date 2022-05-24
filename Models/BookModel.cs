@@ -28,7 +28,14 @@ namespace LibrarySystemMVC.Models
 
         [BsonElement("NumberOfBook")]
         public string NumberOfBook { get; set; }
+        
+        [BsonElement("Edition")]
+        public string Edition { get; set; }
 
+        [BsonElement("Editor")] //An editor does the editing
+        public string Editor { get; set; }
+        public AuthorModel AuthorInfo { get; set; }
+        public PublisherModel PublisherInfo  { get; set; } //publisher does the financial thinking
 
     }
 }

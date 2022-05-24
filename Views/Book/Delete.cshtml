@@ -59,6 +59,43 @@
             @Html.DisplayFor(model => model.NumberOfBook)
         </dd>
 
+        <dt>
+            Edition :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edition)
+        </dd>
+        <dt>
+            Editor :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editor)
+        </dd>
+        <dt>
+            Author Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorInfo.AuthorName)
+        </dd>
+        <dt>
+            Publisher Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisherInfo.PublisherName)
+        </dd>
+
+        <dt>
+            Publish Year :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisherInfo.PublishYear)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

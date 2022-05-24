@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibrarySystemMVC.Models.AuthorModel>
+﻿@model IEnumerable<LibrarySystemMVC.Models.BookModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,27 +12,31 @@
 <table class="table">
     <tr>
         <th>
-            ISBN No :
+            ISBN No 
         </th>
-
         <th>
-            Book Nmae :
+            Book Name 
         </th>
-
         <th>
-            Page Number :
+            Page Number 
         </th>
-
         <th>
-            Language :
+            Language 
         </th>
-
         <th>
-            Category :
+            Category 
         </th>
-
         <th>
-            Number Of Book :
+            Number Of Book 
+        </th>
+        <th>
+            Author Name
+        </th>
+        <th>
+            Publisher Name
+        </th>
+        <th>
+            Publish Year
         </th>
 
         <th></th>
@@ -41,14 +45,32 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(model => item.AuthorName)
+            @Html.DisplayFor(model => item.ISBNNO)
         </td>
         <td>
-            @Html.DisplayFor(model => item.AuthorSurname)
+            @Html.DisplayFor(model => item.BookName)
 
         </td>
         <td>
-            @Html.DisplayFor(model => item.AuthorEmail)
+            @Html.DisplayFor(model => item.PageNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Language)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.NumberOfBook)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.AuthorInfo.AuthorName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PublisherInfo.PublisherName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PublisherInfo.PublishYear)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |

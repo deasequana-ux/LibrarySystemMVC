@@ -29,10 +29,17 @@ namespace LibrarySystemMVC.Controllers
         // GET: Product
         public ActionResult Index()
         {
-
-            // this is something(all list from prodect model) we returning back
-            List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
-            return View(books);
+            try
+            {
+                // this is something(all list from prodect model) we returning back
+                List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
+                return View(books);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         // GET: Product/Details/5
@@ -91,7 +98,12 @@ namespace LibrarySystemMVC.Controllers
                     .Set("PageNumber", book.PageNumber)
                     .Set("Language", book.Language)
                     .Set("Category", book.Category)
-                    .Set("NumberOfBook", book.NumberOfBook);
+                    .Set("NumberOfBook", book.NumberOfBook)
+                    .Set("Edition", book.Edition)
+                    .Set("Editor", book.Editor)
+                    .Set("AuthorName", book.AuthorInfo.AuthorName)
+                    .Set("PublisherName", book.PublisherInfo.PublisherName)
+                    .Set("PublishYear", book.PublisherInfo.PublishYear);
 
 
                 var result = bookCollection.UpdateMany(filter, update);

@@ -89,7 +89,8 @@ namespace LibrarySystemMVC.Controllers
                     .Set("PublisherName", publisher.PublisherName)
                     .Set("PublisherPhoneNumber", publisher.PublisherPhoneNumber)
                     .Set("PublisherAddress", publisher.PublisherAddress)
-                    .Set("PublisherWebsite", publisher.PublisherWebsite);
+                    .Set("PublisherWebsite", publisher.PublisherWebsite)
+                    .Set("PublishYear", publisher.PublishYear);
 
 
                 var result = publisherCollection.UpdateMany(filter, update);

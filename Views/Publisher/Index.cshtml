@@ -12,18 +12,20 @@
 <table class="table">
     <tr>
         <th>
-            Publisher Name :
+            Publisher Name 
         </th>
         <th>
-            Phone Number :
+            Phone Number 
         </th>
         <th>
-            Address :
+            Address 
         </th>
         <th>
-            Website :
+            Website 
         </th>
-        <th></th>
+        <th>
+            Publish Year
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -42,6 +44,10 @@
         </td>
         <td>
             @Html.DisplayFor(model => item.PublisherWebsite)
+            
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PublishYear)
             
         </td>
         <td>
