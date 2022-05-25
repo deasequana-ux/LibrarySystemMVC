@@ -16,7 +16,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-10">
-                ISBN No :
+                Borrow Date :
+                <select class="form-control" name="name" id="borrowDate" value=@item.BorrowDate>
+                    <option value="0" selected>please select</option>
+                </select>
                 @*@Html.LabelFor(model => model.ISBNNO, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 @Html.EditorFor(model => item.BorrowDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => item.BorrowDate, "", new { @class = "text-danger" })
@@ -26,18 +29,24 @@
         <div class="form-group">
             @*@Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                Book Name :
-                @Html.EditorFor(model => item.DueDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => item.DueDate, "", new { @class = "text-danger" })
-            </div>
+                Due Date :
+                <select class="form-control" name="name" id="dueDate" value=@item.DueDate>
+                    <option value="0" selected>please select</option>
+                    </select>
+                    @Html.EditorFor(model => item.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => item.DueDate, "", new { @class = "text-danger" })
+</div>
         </div>
 
         <div class="form-group">
             @*@Html.LabelFor(model => model.PageNumber, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                Page Number :
-                @Html.EditorFor(model => item.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => item.ReturnDate, "", new { @class = "text-danger" })
+                Return Date :
+                <select class="form-control" name="name" id="returnDate" value=@item.ReturnDate>
+                    <option value="0" selected>please select</option>
+                    </select>
+                    @Html.EditorFor(model => item.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => item.ReturnDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -45,10 +54,19 @@
             @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 Author Name :
-                <select class="form-control" name="name" id="authorName" value=@item.BookInfo.BookName>
+                <select class="form-control" name="name" id="bookName" value=@item.BookInfo.BookName>
                     <option value="0" selected>please select</option>
                 </select>
                 @Html.ValidationMessageFor(model => item.BookInfo.BookName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                Publisher Name :
+                @Html.EditorFor(model => item.PublisherInfo.PublisherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => item.PublisherInfo.PublisherName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -78,6 +96,7 @@
                 @Html.ValidationMessageFor(model => item.UsersInfo.UserSurname, "", new { @class = "text-danger" })
             </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

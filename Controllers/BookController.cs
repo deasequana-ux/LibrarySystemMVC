@@ -93,6 +93,7 @@ namespace LibrarySystemMVC.Controllers
                 // TODO: Add update logic here
                 var filter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<BookModel>.Update
+                    .Set("_id", ObjectId.Parse(id))
                     .Set("ISBNNO", book.ISBNNO)
                     .Set("BookName", book.BookName)
                     .Set("PageNumber", book.PageNumber)
@@ -102,7 +103,12 @@ namespace LibrarySystemMVC.Controllers
                     .Set("Edition", book.Edition)
                     .Set("Editor", book.Editor)
                     .Set("AuthorName", book.AuthorInfo.AuthorName)
+                    .Set("AuthorSurname", book.AuthorInfo.AuthorSurname)
+                    .Set("AuthorEmail", book.AuthorInfo.AuthorEmail)
                     .Set("PublisherName", book.PublisherInfo.PublisherName)
+                    .Set("PublisherPhoneNumber", book.PublisherInfo.PublisherPhoneNumber)
+                    .Set("PublisherAddress", book.PublisherInfo.PublisherAddress)
+                    .Set("PublisherWebsite", book.PublisherInfo.PublisherWebsite)
                     .Set("PublishYear", book.PublisherInfo.PublishYear);
 
 

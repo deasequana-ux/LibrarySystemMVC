@@ -91,8 +91,9 @@ namespace LibrarySystemMVC.Controllers
                     .Set("ReturnDate", borrowing.ReturnDate)
                     .Set("AuthorName", borrowing.BookInfo.BookName)
                     .Set("PublisherName", borrowing.PublisherInfo.PublisherName)
-                    .Set("PublisherName", borrowing.UsersInfo.UserName)
-                    .Set("PublisherName", borrowing.UsersInfo.UserSurname)
+                    .Set("PublisherPhoneNumber", borrowing.PublisherInfo.PublisherPhoneNumber)
+                    .Set("PublisherAddress", borrowing.PublisherInfo.PublisherAddress)
+                    .Set("PublisherWebsite", borrowing.PublisherInfo.PublisherWebsite)
                     .Set("PublishYear", borrowing.PublisherInfo.PublishYear);
 
                 var result = borrowingCollection.UpdateMany(filter, update);
