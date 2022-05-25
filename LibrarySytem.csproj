@@ -135,6 +135,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MongoDBContext.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BorrowingController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,6 +145,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BookModel.cs" />
+    <Compile Include="Models\BorrowingModel.cs" />
+    <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\PublisherModel.cs" />
     <Compile Include="Models\AuthorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,6 +298,16 @@
     <Content Include="Views\Book\Details.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Borrowing\Delete.cshtml" />
+    <Content Include="Views\Borrowing\Details.cshtml" />
+    <Content Include="Views\Borrowing\Edit.cshtml" />
+    <Content Include="Views\Borrowing\Index.cshtml" />
+    <Content Include="Views\Borrowing\Create.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,82 @@
+﻿@model LibrarySystemMVC.Models.BorrowingModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product Model</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Borrow Date :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BorrowDate)
+        </dd>
+
+        <dt>
+            Due Date :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            Return Date :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+
+        <dt>
+            Book Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookInfo.BookName)
+        </dd>
+
+        <dt>
+            Publisher Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisherInfo.PublisherName)
+        </dd>
+
+        <dt>
+            Publish Year :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisherInfo.PublishYear)
+        </dd>
+
+        <dt>
+            User Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsersInfo.UserName)
+        </dd>
+
+        <dt>
+            User Surname :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsersInfo.UserSurname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

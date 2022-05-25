@@ -1,0 +1,68 @@
+﻿@model LibrarySystemMVC.Models.UsersModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            Surname :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserSurname)
+        </dd>
+
+        <dt>
+            Phone Number :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPhoneNumber)
+        </dd>
+
+        <dt>
+            Address :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+
+        <dt>
+            Username :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            Password :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPassword)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
