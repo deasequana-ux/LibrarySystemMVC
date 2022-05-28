@@ -8,17 +8,17 @@ namespace LibrarySystemMVC.Models
 {
     public class BookModel
     {
-        [BsonId]     
-        public ObjectId Id { get; set; }
+        [BsonId]
+        public ObjectId BookId { get; set; }
 
         [BsonElement("ISBNNO")]
-        public string ISBNNO { get; set; }
+        public int ISBNNO { get; set; }
 
         [BsonElement("BookName")]
         public string BookName { get; set; }
 
         [BsonElement("PageNumber")]
-        public string PageNumber { get; set; }
+        public int PageNumber { get; set; }
 
         [BsonElement("Language")]
         public string Language { get; set; }
@@ -27,10 +27,10 @@ namespace LibrarySystemMVC.Models
         public string Category { get; set; }
 
         [BsonElement("NumberOfBook")]
-        public string NumberOfBook { get; set; }
+        public int NumberOfBook { get; set; }
         
         [BsonElement("Edition")]
-        public string Edition { get; set; }
+        public int Edition { get; set; }
 
         [BsonElement("Editor")] //An editor does the editing
         public string Editor { get; set; }

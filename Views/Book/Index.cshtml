@@ -12,22 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            ISBN No 
+            ISBN No
         </th>
         <th>
-            Book Name 
+            Book Name
         </th>
         <th>
-            Page Number 
+            Page Number
         </th>
         <th>
-            Language 
+            Language
         </th>
         <th>
-            Category 
+            Category
         </th>
         <th>
-            Number Of Book 
+            Number Of Book
         </th>
         <th>
             Author Name
@@ -42,42 +42,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(model => item.ISBNNO)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.BookName)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.ISBNNO)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.BookName)
 
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PageNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Language)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.NumberOfBook)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.AuthorInfo.AuthorName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PublisherInfo.PublisherName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PublisherInfo.PublishYear)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-            @Html.ActionLink("Details", "Details", new {id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.PageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.NumberOfBook)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.AuthorInfo.AuthorName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.PublisherInfo.PublisherName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.PublisherInfo.PublishYear)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+            </td>
+        </tr>
+    }
+   
 </table>

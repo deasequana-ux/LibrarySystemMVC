@@ -9,6 +9,8 @@ using MongoDB.Driver.Core;
 using LibrarySystemMVC.App_Start;     //for handling  error and including this page as start coz controller is everything manage
 using MongoDB.Driver;
 using LibrarySystemMVC.Models;
+using System.Threading.Tasks;
+using MongoDB.Driver.Linq;
 
 namespace LibrarySystemMVC.Controllers
 {
@@ -26,7 +28,7 @@ namespace LibrarySystemMVC.Controllers
         }
 
 
-        // GET: Product
+        // GET: Book
         public ActionResult Index()
         {
             try
@@ -42,31 +44,31 @@ namespace LibrarySystemMVC.Controllers
             
         }
 
-        // GET: Product/Details/5
+        // GET: Book/Details/5
         public ActionResult Details(string id)
         {
 
             var bookId = new ObjectId(id);
-            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.Id == bookId);    
+            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.BookId == bookId);    
             return View(book);
         }
 
-        // GET: Product/Create
+        // GET: Book/Create
         public ActionResult Create()
         {
-            return View();
+            List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
+            return View(books);
         }
 
-        // POST: Product/Create
+        // POST: Book/Create
         [HttpPost]
         public ActionResult Create(BookModel book)
         {
             try
             {
                 // TODO: Add insert logic here
-
                 bookCollection.InsertOne(book);      //we are inserting
-                return RedirectToAction("Index");
+                return View("Index");
             }
             catch
             {
@@ -74,12 +76,12 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: Book/Edit/5
         public ActionResult Edit(string id)
         {
 
             var bookId = new ObjectId(id);
-            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.Id == bookId);
+            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.BookId == bookId);
             return View(book);
            
         }
@@ -102,14 +104,16 @@ namespace LibrarySystemMVC.Controllers
                     .Set("NumberOfBook", book.NumberOfBook)
                     .Set("Edition", book.Edition)
                     .Set("Editor", book.Editor)
-                    .Set("AuthorName", book.AuthorInfo.AuthorName)
-                    .Set("AuthorSurname", book.AuthorInfo.AuthorSurname)
-                    .Set("AuthorEmail", book.AuthorInfo.AuthorEmail)
-                    .Set("PublisherName", book.PublisherInfo.PublisherName)
-                    .Set("PublisherPhoneNumber", book.PublisherInfo.PublisherPhoneNumber)
-                    .Set("PublisherAddress", book.PublisherInfo.PublisherAddress)
-                    .Set("PublisherWebsite", book.PublisherInfo.PublisherWebsite)
-                    .Set("PublishYear", book.PublisherInfo.PublishYear);
+                    .Set("AuthorInfo", book.AuthorInfo)
+                    .Set("PublisherInfo", book.PublisherInfo);
+                    //.Set("AuthorName", book.AuthorInfo.AuthorName)
+                    //.Set("AuthorSurname", book.AuthorInfo.AuthorSurname)
+                    //.Set("AuthorEmail", book.AuthorInfo.AuthorEmail)
+                    //.Set("PublisherName", book.PublisherInfo.PublisherName)
+                    //.Set("PublisherPhoneNumber", book.PublisherInfo.PublisherPhoneNumber)
+                    //.Set("PublisherAddress", book.PublisherInfo.PublisherAddress)
+                    //.Set("PublisherWebsite", book.PublisherInfo.PublisherWebsite)
+                    //.Set("PublishYear", book.PublisherInfo.PublishYear);
 
 
                 var result = bookCollection.UpdateMany(filter, update);
@@ -121,16 +125,16 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: Book/Delete/5
         public ActionResult Delete(string id)
         {
             var bookId = new ObjectId(id);
-            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.Id == bookId);
+            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.BookId == bookId);
             return View(book);
 
         }
 
-        // POST: Product/Delete/5
+        // POST: Book/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
@@ -145,5 +149,23 @@ namespace LibrarySystemMVC.Controllers
                 return View();
             }
         }
+
+        // choose author
+        public ActionResult ChooseAuthor(AuthorModel author)
+        {
+            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.AuthorInfo.Id == author.Id);
+            return View(book);
+
+        }
+
+        // choose publisher
+        public ActionResult ChoosePublisher(PublisherModel publisher)
+        {
+            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.AuthorInfo.Id == publisher.Id);
+            return View(book);
+
+        }
+
+
     }
 }
