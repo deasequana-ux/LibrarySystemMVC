@@ -12,30 +12,25 @@ using LibrarySystemMVC.Models;
 
 namespace LibrarySystemMVC.Controllers
 {
-    public class UsersController : Controller
+    public class AccountController : Controller
     {
         private MongoDBContext dbcontext;
         private IMongoCollection<UsersModel> userCollection;
 
-        //for grid controller
-
-        public UsersController()
+        public AccountController()
         {
             dbcontext = new MongoDBContext();
             userCollection = dbcontext.database.GetCollection<UsersModel>("user"); //we are getting collection //product is collection name
         }
 
 
-        // GET: Product
+  
         public ActionResult Index()
         {
-
-            // this is something(all list from prodect model) we returning back
             List<UsersModel> users = userCollection.AsQueryable<UsersModel>().ToList();
             return View(users);
         }
 
-        // GET: Product/Details/5
         public ActionResult Details(string id)
         {
 
@@ -44,21 +39,19 @@ namespace LibrarySystemMVC.Controllers
             return View(user);
         }
 
-        // GET: Product/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+
         [HttpPost]
-        public ActionResult Create(UsersModel user)
+        public ActionResult Create(UsersModel user) //register
         {
             try
             {
-                // TODO: Add insert logic here
-
-                userCollection.InsertOne(user);      //we are inserting
+                userCollection.InsertOne(user);      
                 return RedirectToAction("Index");
             }
             catch
@@ -67,7 +60,6 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Edit/5
         public ActionResult Edit(string id)
         {
 
@@ -77,7 +69,6 @@ namespace LibrarySystemMVC.Controllers
            
         }
 
-        // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, UsersModel user)
         {
@@ -87,10 +78,7 @@ namespace LibrarySystemMVC.Controllers
                 var filter = Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<UsersModel>.Update
                     .Set("UserName", user.UserName)
-                    .Set("UserSurname", user.UserSurname)
-                    .Set("UserPhoneNumber", user.UserPhoneNumber)
-                    .Set("UserAddress", user.UserAddress)
-                    .Set("User_Name", user.User_Name)
+                    .Set("UserSurname", user.UserEmail)
                     .Set("UserPassword", user.UserPassword);
 
                 var result = userCollection.UpdateMany(filter, update);
@@ -102,7 +90,6 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Delete/5
         public ActionResult Delete(string id)
         {
             var userId = new ObjectId(id);
@@ -111,7 +98,6 @@ namespace LibrarySystemMVC.Controllers
 
         }
 
-        // POST: Product/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {

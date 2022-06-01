@@ -1,193 +1,49 @@
-﻿@model IEnumerable<LibrarySystemMVC.Models.BookModel>
+﻿@model  LibrarySystemMVC.Models.BookModel
 
+<h2> Create Book</h2>
 
-@{
-    ViewBag.Title = "Create";
-}
+@using (Html.BeginForm("Create", "Book", FormMethod.Post))
+{
+    <div class="form-group" style="margin-top:30px;">
+        <b>ISBN No:</b>@Html.TextBoxFor(x => x.ISBNNO, new { @class = "form-control" })
+        <b>Book Name:</b>@Html.TextBoxFor(x => x.BookName, new { @class = "form-control" })
+        <b>Page Number:</b>@Html.TextBoxFor(x => x.PageNumber, new { @class = "form-control" })
+        <b>Language:</b>@Html.TextBoxFor(x => x.Language, new { @class = "form-control" })
+        <label for="category">Category:</label>
+        <select class="form-control" name="category" id="category">
+            <option selected value="Anonim">Please Select</option>
+            <option value="Novel">Novel</option>
+            <option value="Classics">Classics</option>
+            <option value="Horror">Horror</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+        </select>
+        <b>Number of book:</b>@Html.TextBoxFor(x => x.NumberOfBook, new { @class = "form-control" })
+        <label for="editor">Editor:</label>
+        <select class="form-control" name="editor" id="editor">
+            <option selected value="Anonim">Please Select</option>
+            <option value="Merve Kalay">Merve Kalay</option>
+            <option value="Zehra Güneş">Zehra Güneş</option>
+            <option value="Aras Bulut">Aras Bulut</option>
+        </select>
+        <b>Edition:</b>@Html.TextBoxFor(x => x.Edition, new { @class = "form-control" })
+        <label for="author">Author:</label>
+        <select class="form-control" name="author" id="author">
+            <option selected value="Anonim">Please Select</option>
+            <option value="Damla Topçu">Damla Topçu</option>
+            <option value="Emre Işık">Emre Işık</option>
+            <option value="Şevval Yıldız">Şevval Yıldız</option>
+        </select>
+        <label for="publisher">Publisher:</label>
+        <select class="form-control" name="publisher" id="publisher">
+            <option selected value="Anonim">Please Select</option>
+            <option value="Hilal Yüce">Hilal Yüce</option>
+            <option value="Emre Salman">Emre Salman</option>
+        </select>
+        <b>Publish Year:</b>@Html.TextBoxFor(x => x.PublishYear, new { @class = "form-control" })
 
-<style type="text/css">
-    .authorTable {
-        margin: -580px 350px;
-        border-collapse: collapse;
-        width: 700px;
-        position: absolute;
-    }
-
-        .authorTable th, .authorTable td {
-            border: 1px solid #C0C0C0;
-            padding: 5px;
-        }
-
-    .publisherTable {
-        margin: -330px 350px;
-        border-collapse: collapse;
-        width: 700px;
-        position: absolute;
-    }
-
-        .publisherTable th, .publisherTable td {
-            border: 1px solid #C0C0C0;
-            padding: 5px;
-        }
-</style>
-
-<h2>Create</h2>
-
-
-<form method="post">
-        <div class="form-horizontal">
-            <h4>Book Model</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <div class="col-md-10">
-                    ISBN No :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Book Name :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Page Number :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Language :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Category :
-                    <input type="text" class="form-control">
-                    @*<select class="form-control" name="name" id="category">
-                        <option value="0" selected>please select</option>
-                        <option value="1" selected>Roman</option>
-                        <option value="2" selected>Biyografi</option>
-                        <option value="3" selected>Klasik</option>
-                    </select>*@
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Number Of Book :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Edition :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    Editor :
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-
-       
-        <table class="authorTable">
-            <thead class="thead-light">
-                <tr>
-                    <th>
-                        Author Name
-
-                    </th>
-                    <th>
-                        Author Surname
-
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            @foreach (var item in Model)
-            {
-                <tbody>
-                    <tr>
-                        <td>
-                            @item.AuthorInfo.AuthorName
-                        </td>
-                        <td>
-                            @item.AuthorInfo.AuthorSurname
-
-                        </td>
-                        <td>
-                            @item.AuthorInfo.AuthorEmail
-                        </td>
-                        <td>
-                            <input type="button" value="Choose" onclick="location.href='@Url.Action("ChooseAuthor", "Book")'" />
-                        <td>
-                    </tr>
-                </tbody>}
-            </table>
-            
-        <table class="publisherTable">
-            <thead class="thead-light">
-                <tr>
-                    <th>
-                        Publisher Name
-
-                    </th>
-                    <th>
-                        Publish Year
-                    </th>
-                    <th></th>
-                </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(model => item.PublisherInfo.PublisherName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => item.PublisherInfo.PublishYear)
-
-                        </td>
-                        <td>
-                            <input type="button" value="Choose" onclick="location.href='@Url.Action("ChoosePublisher", "Book")'" />
-                        </td>
-                    </tr>
-                </tbody>
-
-            }
-            </table>
-        
-</form>
-
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-
+    <div class="form-group">
+        <button class="btn btn-info"> Save </button>
+    </div>
+}

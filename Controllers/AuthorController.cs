@@ -17,7 +17,7 @@ namespace LibrarySystemMVC.Controllers
         private MongoDBContext dbcontext;
         private IMongoCollection<AuthorModel> authorCollection;
 
-        //for grid controller
+
 
         public AuthorController()
         {
@@ -26,7 +26,6 @@ namespace LibrarySystemMVC.Controllers
         }
 
 
-        // GET: Product
         public ActionResult Index()
         {
 
@@ -35,7 +34,6 @@ namespace LibrarySystemMVC.Controllers
             return View(authors);
         }
 
-        // GET: Product/Details/5
         public ActionResult Details(string id)
         {
 
@@ -44,21 +42,18 @@ namespace LibrarySystemMVC.Controllers
             return View(author);
         }
 
-        // GET: Product/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
         [HttpPost]
         public ActionResult Create(AuthorModel author)
         {
             try
             {
-                // TODO: Add insert logic here
 
-                authorCollection.InsertOne(author);      //we are inserting
+                authorCollection.InsertOne(author);      
                 return RedirectToAction("Index");
             }
             catch
@@ -67,7 +62,6 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Edit/5
         public ActionResult Edit(string id)
         {
 
@@ -77,7 +71,6 @@ namespace LibrarySystemMVC.Controllers
            
         }
 
-        // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, AuthorModel author)
         {
@@ -99,7 +92,6 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Delete/5
         public ActionResult Delete(string id)
         {
             var authorId = new ObjectId(id);
@@ -108,13 +100,11 @@ namespace LibrarySystemMVC.Controllers
 
         }
 
-        // POST: Product/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
                 authorCollection.DeleteOne(Builders<AuthorModel>.Filter.Eq("_id", ObjectId.Parse(id)));
                 return RedirectToAction("Index");
             }

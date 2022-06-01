@@ -38,7 +38,6 @@ namespace LibrarySystemMVC.Controllers
         // GET: Product/Details/5
         public ActionResult Details(string id)
         {
-
             var publisherId = new ObjectId(id);
             var publisher = publisherCollection.AsQueryable<PublisherModel>().SingleOrDefault(x => x.Id == publisherId);    
             return View(publisher);

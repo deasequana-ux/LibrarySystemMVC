@@ -24,7 +24,7 @@ namespace LibrarySystemMVC.Models
         public string PublisherWebsite { get; set; }
 
         [BsonElement("PublishYear")]
-        public string PublishYear { get; set; }
+        public DateTime PublishYear { get; set; }
 
 
 

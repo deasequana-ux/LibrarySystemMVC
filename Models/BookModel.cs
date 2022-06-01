@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace LibrarySystemMVC.Models
@@ -28,14 +29,21 @@ namespace LibrarySystemMVC.Models
 
         [BsonElement("NumberOfBook")]
         public int NumberOfBook { get; set; }
-        
-        [BsonElement("Edition")]
-        public int Edition { get; set; }
 
         [BsonElement("Editor")] //An editor does the editing
         public string Editor { get; set; }
-        public AuthorModel AuthorInfo { get; set; }
-        public PublisherModel PublisherInfo  { get; set; } //publisher does the financial thinking
 
+        [BsonElement("Edition")]
+        public int Edition { get; set; }
+
+        [BsonElement("Author")]
+        public string Author { get; set; }
+
+        [BsonElement("Publisher")]
+        public string Publisher { get; set; }
+
+        [BsonElement("PublishYear")]
+        public int PublishYear { get; set; }
     }
+    
 }

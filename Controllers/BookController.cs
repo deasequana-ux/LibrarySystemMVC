@@ -24,18 +24,24 @@ namespace LibrarySystemMVC.Controllers
         public BookController()
         {
             dbcontext = new MongoDBContext();
-            bookCollection = dbcontext.database.GetCollection<BookModel>("book"); //we are getting collection //product is collection name
+            bookCollection = dbcontext.database.GetCollection<BookModel>("book"); 
         }
 
 
         // GET: Book
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             try
+            
             {
-                // this is something(all list from prodect model) we returning back
                 List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
-                return View(books);
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                   var result = books.Where(x => x.BookName.Contains(searchString)).ToList(); //search
+                   return View("Index", result);
+                }
+                return View("Index", books);
             }
             catch (Exception)
             {
@@ -54,10 +60,10 @@ namespace LibrarySystemMVC.Controllers
         }
 
         // GET: Book/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
-            return View(books);
+            return View();
         }
 
         // POST: Book/Create
@@ -67,8 +73,8 @@ namespace LibrarySystemMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
-                bookCollection.InsertOne(book);      //we are inserting
-                return View("Index");
+                bookCollection.InsertOne(book);
+                return View("Create");
             }
             catch
             {
@@ -86,7 +92,6 @@ namespace LibrarySystemMVC.Controllers
            
         }
 
-        // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, BookModel book)
         {
@@ -104,16 +109,9 @@ namespace LibrarySystemMVC.Controllers
                     .Set("NumberOfBook", book.NumberOfBook)
                     .Set("Edition", book.Edition)
                     .Set("Editor", book.Editor)
-                    .Set("AuthorInfo", book.AuthorInfo)
-                    .Set("PublisherInfo", book.PublisherInfo);
-                    //.Set("AuthorName", book.AuthorInfo.AuthorName)
-                    //.Set("AuthorSurname", book.AuthorInfo.AuthorSurname)
-                    //.Set("AuthorEmail", book.AuthorInfo.AuthorEmail)
-                    //.Set("PublisherName", book.PublisherInfo.PublisherName)
-                    //.Set("PublisherPhoneNumber", book.PublisherInfo.PublisherPhoneNumber)
-                    //.Set("PublisherAddress", book.PublisherInfo.PublisherAddress)
-                    //.Set("PublisherWebsite", book.PublisherInfo.PublisherWebsite)
-                    //.Set("PublishYear", book.PublisherInfo.PublishYear);
+                    .Set("Author", book.Author)
+                    .Set("Publisher", book.Publisher)
+                    .Set("PublishYear", book.PublishYear);
 
 
                 var result = bookCollection.UpdateMany(filter, update);
@@ -149,23 +147,6 @@ namespace LibrarySystemMVC.Controllers
                 return View();
             }
         }
-
-        // choose author
-        public ActionResult ChooseAuthor(AuthorModel author)
-        {
-            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.AuthorInfo.Id == author.Id);
-            return View(book);
-
-        }
-
-        // choose publisher
-        public ActionResult ChoosePublisher(PublisherModel publisher)
-        {
-            var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.AuthorInfo.Id == publisher.Id);
-            return View(book);
-
-        }
-
 
     }
 }

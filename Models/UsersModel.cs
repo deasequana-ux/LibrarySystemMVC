@@ -14,23 +14,11 @@ namespace LibrarySystemMVC.Models
         [BsonElement("UserName")]
         public string UserName { get; set; }
 
-        [BsonElement("UserSurname")]
-        public string UserSurname { get; set; }
-
-        [BsonElement("UserPhoneNumber")]
-        public string UserPhoneNumber { get; set; }
-
-        [BsonElement("UserAddress")]
-        public string UserAddress { get; set; }
-
-        [BsonElement("User_Name")]
-        public string User_Name { get; set; }
+        [BsonElement("UserEmail")]
+        public string UserEmail { get; set; }
 
         [BsonElement("UserPassword")]
         public string UserPassword { get; set; }
-
-
-
 
     }
 }

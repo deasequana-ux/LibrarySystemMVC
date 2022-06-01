@@ -20,8 +20,8 @@ namespace LibrarySystemMVC.Models
         [BsonElement("ReturnDate")] //teslim ettiği tarih
         public string ReturnDate { get; set; }
         public BookModel BookInfo { get; set; }
-        public PublisherModel PublisherInfo { get; set; } //publisher does the financial thinking
-        public UsersModel UsersInfo { get; set; }
+        //public PublisherModel PublisherInfo { get; set; } //publisher does the financial thinking
+        //public UsersModel UsersInfo { get; set; }
 
 
 
