@@ -4,6 +4,8 @@
     ViewBag.Title = "Details";
 }
 
+<br />
+<br />
 <h2>Details</h2>
 
 <div>
@@ -75,14 +77,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AuthorInfo.AuthorName)
+            @Html.DisplayFor(model => model.Author)
         </dd>
+
         <dt>
             Publisher Name :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherInfo.PublisherName)
+            @Html.DisplayFor(model => model.Publisher)
         </dd>
 
         <dt>
@@ -90,7 +93,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublisherInfo.PublishYear)
+            @Html.DisplayFor(model => model.PublishYear)
         </dd>
 
     </dl>

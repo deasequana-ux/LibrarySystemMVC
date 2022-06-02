@@ -22,7 +22,12 @@ namespace LibrarySystemMVC.Models
         public BookModel BookInfo { get; set; }
         //public PublisherModel PublisherInfo { get; set; } //publisher does the financial thinking
         //public UsersModel UsersInfo { get; set; }
+        [BsonElement("Book")]
+        public BookModel Book { get; set; }
+        
 
+        [BsonElement("UserName")]
+        public UsersModel UserName { get; set; }
 
 
     }

@@ -113,6 +113,8 @@ namespace LibrarySystemMVC.Controllers
                     .Set("Publisher", book.Publisher)
                     .Set("PublishYear", book.PublishYear);
 
+    
+
 
                 var result = bookCollection.UpdateMany(filter, update);
                 return RedirectToAction("Index");

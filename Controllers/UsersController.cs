@@ -12,21 +12,24 @@ using LibrarySystemMVC.Models;
 
 namespace LibrarySystemMVC.Controllers
 {
-    public class AccountController : Controller
+    public class UsersController : Controller
     {
         private MongoDBContext dbcontext;
         private IMongoCollection<UsersModel> userCollection;
 
-        public AccountController()
+
+
+        public UsersController()
         {
             dbcontext = new MongoDBContext();
             userCollection = dbcontext.database.GetCollection<UsersModel>("user"); //we are getting collection //product is collection name
         }
 
 
-  
         public ActionResult Index()
         {
+
+            // this is something(all list from prodect model) we returning back
             List<UsersModel> users = userCollection.AsQueryable<UsersModel>().ToList();
             return View(users);
         }
@@ -39,18 +42,17 @@ namespace LibrarySystemMVC.Controllers
             return View(user);
         }
 
-
         public ActionResult Create()
         {
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult Create(UsersModel user) //register
+        public ActionResult Create(UsersModel user)
         {
             try
             {
+
                 userCollection.InsertOne(user);      
                 return RedirectToAction("Index");
             }
@@ -78,8 +80,8 @@ namespace LibrarySystemMVC.Controllers
                 var filter = Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<UsersModel>.Update
                     .Set("UserName", user.UserName)
-                    .Set("UserSurname", user.UserEmail)
-                    .Set("UserPassword", user.UserPassword);
+                    .Set("UserSurname", user.UserSurname)
+                    .Set("AuthorEmail", user.User_Name);
 
                 var result = userCollection.UpdateMany(filter, update);
                 return RedirectToAction("Index");
@@ -103,7 +105,6 @@ namespace LibrarySystemMVC.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
                 userCollection.DeleteOne(Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id)));
                 return RedirectToAction("Index");
             }

@@ -24,20 +24,9 @@
             Book Name 
         </th>
         <th>
-            Publisher Name 
-        </th>
-        <th>
-            Publish Year 
-        </th>
-        <th>
             User Name 
         </th>
-        <th>
-            User Surname
-        </th>
-        <th>
-            User Surname
-        </th>
+        
 
         <th></th>
     </tr>
@@ -57,18 +46,11 @@
         <td>
             @Html.DisplayFor(model => item.BookInfo.BookName)
         </td>
+
         <td>
-            @Html.DisplayFor(model => item.PublisherInfo.PublisherName)
+            @Html.DisplayFor(model => item.UserName)
         </td>
-        <td>
-            @Html.DisplayFor(model => item.PublisherInfo.PublishYear)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.UsersInfo.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.UsersInfo.UserSurname)
-        </td>
+        
 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

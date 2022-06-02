@@ -12,46 +12,48 @@ using LibrarySystemMVC.Models;
 
 namespace LibrarySystemMVC.Controllers
 {
-    public class AccountController : Controller
+    public class LoginController : Controller
     {
         private MongoDBContext dbcontext;
-        private IMongoCollection<UsersModel> userCollection;
+        private IMongoCollection<LoginModel> loginCollection;
 
-        public AccountController()
+
+
+        public LoginController()
         {
             dbcontext = new MongoDBContext();
-            userCollection = dbcontext.database.GetCollection<UsersModel>("user"); //we are getting collection //product is collection name
+            loginCollection = dbcontext.database.GetCollection<LoginModel>("login"); //we are getting collection //product is collection name
         }
 
 
-  
         public ActionResult Index()
         {
-            List<UsersModel> users = userCollection.AsQueryable<UsersModel>().ToList();
-            return View(users);
+
+            // this is something(all list from prodect model) we returning back
+            List<LoginModel> logins = loginCollection.AsQueryable<LoginModel>().ToList();
+            return View(logins);
         }
 
         public ActionResult Details(string id)
         {
 
-            var userId = new ObjectId(id);
-            var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);    
-            return View(user);
+            var loginId = new ObjectId(id);
+            var login = loginCollection.AsQueryable<LoginModel>().SingleOrDefault(x => x.Id == loginId);    
+            return View(login);
         }
-
 
         public ActionResult Create()
         {
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult Create(UsersModel user) //register
+        public ActionResult Create(LoginModel login)
         {
             try
             {
-                userCollection.InsertOne(user);      
+
+                loginCollection.InsertOne(login);      
                 return RedirectToAction("Index");
             }
             catch
@@ -63,25 +65,24 @@ namespace LibrarySystemMVC.Controllers
         public ActionResult Edit(string id)
         {
 
-            var userId = new ObjectId(id);
-            var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);
-            return View(user);
+            var loginId = new ObjectId(id);
+            var login = loginCollection.AsQueryable<LoginModel>().SingleOrDefault(x => x.Id == loginId);
+            return View(login);
            
         }
 
         [HttpPost]
-        public ActionResult Edit(string id, UsersModel user)
+        public ActionResult Edit(string id, LoginModel login)
         {
             try
             {
                 // TODO: Add update logic here
-                var filter = Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id));
-                var update = Builders<UsersModel>.Update
-                    .Set("UserName", user.UserName)
-                    .Set("UserSurname", user.UserEmail)
-                    .Set("UserPassword", user.UserPassword);
+                var filter = Builders<LoginModel>.Filter.Eq("_id", ObjectId.Parse(id));
+                var update = Builders<LoginModel>.Update
+                    .Set("LoginUsername", login.LoginUsername)
+                    .Set("LoginPassword", login.LoginPassword);
 
-                var result = userCollection.UpdateMany(filter, update);
+                var result = loginCollection.UpdateMany(filter, update);
                 return RedirectToAction("Index");
             }
             catch
@@ -92,9 +93,9 @@ namespace LibrarySystemMVC.Controllers
 
         public ActionResult Delete(string id)
         {
-            var userId = new ObjectId(id);
-            var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);
-            return View(user);
+            var loginId = new ObjectId(id);
+            var login = loginCollection.AsQueryable<LoginModel>().SingleOrDefault(x => x.Id == loginId);
+            return View(login);
 
         }
 
@@ -103,8 +104,7 @@ namespace LibrarySystemMVC.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-                userCollection.DeleteOne(Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id)));
+                loginCollection.DeleteOne(Builders<LoginModel>.Filter.Eq("_id", ObjectId.Parse(id)));
                 return RedirectToAction("Index");
             }
             catch

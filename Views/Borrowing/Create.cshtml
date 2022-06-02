@@ -1,121 +1,25 @@
-﻿@model IEnumerable<LibrarySystemMVC.Models.BorrowingModel>
+﻿@model  LibrarySystemMVC.Models.BorrowingModel
 
+<h2> Create Book</h2>
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
-
-
-@foreach (var item in Model)
+@using (Html.BeginForm("Create", "Borrowing", FormMethod.Post))
 {
-    <div class="form-horizontal">
-        <h4>Product Model</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-10">
-                Borrow Date :
-                <select class="form-control" name="name" id="borrowDate" value=@item.BorrowDate>
-                    <option value="0" selected>please select</option>
-                </select>
-                @*@Html.LabelFor(model => model.ISBNNO, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                @Html.EditorFor(model => item.BorrowDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => item.BorrowDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group" style="margin-top:30px;">
+        @*<b>Book Name:</b>@Html.DropDownListFor(m => m.Book.Id, (List<SelectListItem>)ViewBag.publish, new { @class = "form-control" })*@
+        <b>Book Name:</b>@Html.DropDownList("BookName", new SelectList("BookId", "BookName"), new { htmlAttributes = new { @class = "txtBox" } })
+        <input type="submit" />
+        <b>Borrow Date:</b>@Html.TextBoxFor(x => x.BorrowDate, new { @class = "form-control" })
 
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Due Date :
-                <select class="form-control" name="name" id="dueDate" value=@item.DueDate>
-                    <option value="0" selected>please select</option>
-                    </select>
-                    @Html.EditorFor(model => item.DueDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => item.DueDate, "", new { @class = "text-danger" })
-</div>
-        </div>
+        <b>Due Date:</b>@Html.TextBoxFor(x => x.DueDate, new { @class = "form-control" })
 
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.PageNumber, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Return Date :
-                <select class="form-control" name="name" id="returnDate" value=@item.ReturnDate>
-                    <option value="0" selected>please select</option>
-                    </select>
-                    @Html.EditorFor(model => item.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => item.ReturnDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Author Name :
-                <select class="form-control" name="name" id="bookName" value=@item.BookInfo.BookName>
-                    <option value="0" selected>please select</option>
-                </select>
-                @Html.ValidationMessageFor(model => item.BookInfo.BookName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Publisher Name :
-                @Html.EditorFor(model => item.PublisherInfo.PublisherName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => item.PublisherInfo.PublisherName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Publisher Name :
-                @Html.EditorFor(model => item.PublisherInfo.PublisherName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => item.PublisherInfo.PublisherName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Publish Year :
-                @Html.DisplayFor(model => item.UsersInfo.UserName)
-                @Html.ValidationMessageFor(model => item.UsersInfo.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.NumberOfBook, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                Publish Year :
-                @Html.DisplayFor(model => item.UsersInfo.UserSurname)
-                @Html.ValidationMessageFor(model => item.UsersInfo.UserSurname, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <b>Return Date:</b>@Html.TextBoxFor(x => x.ReturnDate, new { @class = "form-control" })
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-        }
-
-
+        <b>User Name:</b>@Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
 
     </div>
-}
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <div class="form-group">
+        <button class="btn btn-info"> Save </button>
+    </div>
 }
-
