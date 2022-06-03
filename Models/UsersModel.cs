@@ -20,9 +20,9 @@ namespace LibrarySystemMVC.Models
         [BsonElement("UserPassword")]
         public string UserPassword { get; set; }
 
-        [Required(ErrorMessage = "Please select your role")]
-        [BsonElement("UserRole")]
-        public string UserRole { get; set; }
+        //[Required(ErrorMessage = "Please select your role")]
+        //[BsonElement("UserRole")]
+        //public string UserRole { get; set; }
 
         //public IList<BookModel> Books { get; }  //to-many relationship 
 

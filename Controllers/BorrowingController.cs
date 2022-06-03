@@ -96,7 +96,7 @@ namespace LibrarySystemMVC.Controllers
 
             var result = bookCollection.UpdateMany(bookFilter, update);
 
-            return RedirectToAction("Index", "Book");
+            return RedirectToAction("Index", "Borrowing");
 
         }
 

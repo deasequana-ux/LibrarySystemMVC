@@ -156,18 +156,5 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        public ActionResult Borrow(/*string id, BookModel book*/)
-        {
-            //var filter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(id));
-            var book = new BookModel();
-            book.Users.Add(new UsersModel
-            {
-               UserEmail= "user@gmail.com",
-               UserPassword= "123",
-               UserRole = "user"
-            });
-            return View();
-        }
-
     }
 }

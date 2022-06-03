@@ -135,11 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MongoDBContext.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\UBookController.cs" />
-    <Compile Include="Controllers\IBookController.cs" />
-    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BorrowingController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
@@ -148,9 +144,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\UBookModel.cs" />
-    <Compile Include="Models\IBookModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\BorrowingModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
@@ -340,14 +333,7 @@
     <Content Include="Views\Borrowing\Create.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
-    <Content Include="Views\Users\Admin.cshtml" />
-    <Content Include="Views\IBook\Details.cshtml" />
-    <Content Include="Views\IBook\Index.cshtml" />
     <Content Include="Views\Users\Logout.cshtml" />
-    <Content Include="Views\UBook\Details.cshtml" />
-    <Content Include="Views\UBook\Index.cshtml" />
-    <Content Include="Views\UBook\Logout.cshtml" />
-    <Content Include="Views\Users\Borrow.cshtml" />
     <Content Include="Views\Book\Borrow.cshtml" />
   </ItemGroup>
   <ItemGroup>

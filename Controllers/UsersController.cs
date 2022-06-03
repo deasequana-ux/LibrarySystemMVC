@@ -82,8 +82,8 @@ namespace LibrarySystemMVC.Controllers
                 var filter = Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<UsersModel>.Update
                     .Set("UserEmail", user.UserEmail)
-                    .Set("UserPassword", user.UserPassword)
-                    .Set("UserRole", user.UserRole);
+                    .Set("UserPassword", user.UserPassword);
+                    //.Set("UserRole", user.UserRole);
 
                 var result = userCollection.UpdateMany(filter, update);
                 return RedirectToAction("Index");
@@ -130,22 +130,22 @@ namespace LibrarySystemMVC.Controllers
         [HttpPost]
         public ActionResult Login(UsersModel users)
         {
-            var response = userCollection.AsQueryable<UsersModel>().FirstOrDefault(x => x.UserEmail == users.UserEmail && x.UserPassword == users.UserPassword && x.UserRole == users.UserRole);
+            var response = userCollection.AsQueryable<UsersModel>().FirstOrDefault(x => x.UserEmail == users.UserEmail && x.UserPassword == users.UserPassword /*&& x.UserRole == users.UserRole*/);
             if (response != null)
             {
                 FormsAuthentication.SetAuthCookie(users.UserEmail, false);
-                if (users.UserRole == "Admin")
-                {
-                    // Set user id to session
-                    Session["UserId"] = response.UserId.ToString();
-                    return RedirectToAction("Admin", "Users");
-                }
-                else
-                {
+                //if (users.UserRole == "Admin")
+                //{
+                //    // Set user id to session
+                //    Session["UserId"] = response.UserId.ToString();
+                //    return RedirectToAction("Admin", "Users");
+                //}
+                //else
+                //{
                     // Set user id to session
                     Session["UserId"] = response.UserId.ToString();
                     return RedirectToAction("Index", "Book");
-                }
+                //}
             }
             else
             {
@@ -174,47 +174,11 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-
-        public ActionResult Admin()
-        {
-            return View();
-        }
-
-
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();  //Kullanıcıya çıkış yaptırdık 
             return RedirectToAction("Login");
         }
 
-        
-
-        //public ActionResult Borrow(string id)
-        //{
-        //    var bookId = new ObjectId(id);
-        //    var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.BookId == bookId);
-        //    return View(book);
-        //}
-
-        //public ActionResult Borrow(/*string id, BookModel book*/)
-        //{
-        //    //var filter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(id));
-        //    var user= new UsersModel();
-        //    user.Books.Add(new BookModel
-        //    {
-        //        ISBNNO = 12313,
-        //        BookName = "deneme",
-        //        PageNumber = 122,
-        //        Language = "english",
-        //        Category = "Novel",
-        //        NumberOfBook = 2,
-        //        Editor = "Aras Bulut",
-        //        Edition = 3,
-        //        Author = "Damla Topçu",
-        //        Publisher = "Hilal Yüce",
-        //        PublishYear = 1999
-        //    });
-        //    return View();
-        //}
     }
 }

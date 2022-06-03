@@ -33,7 +33,7 @@
             <td>
                 @if (!string.IsNullOrEmpty(item.ReturnDate))
                 {
-                    Html.DisplayFor(model => item.ReturnDate);
+                    @Html.DisplayFor(model => item.ReturnDate);
                 }
                 else
                 {

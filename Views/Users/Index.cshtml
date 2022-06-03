@@ -19,10 +19,10 @@
             Password
 
         </th>
-        <th>
+        @*<th>
             User Role
 
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -34,9 +34,9 @@
         <td>
             @Html.DisplayFor(model => item.UserPassword)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(model => item.UserRole)
-        </td>
+        </td>*@
 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
