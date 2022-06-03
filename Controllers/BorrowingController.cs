@@ -23,12 +23,12 @@ namespace LibrarySystemMVC.Controllers
         public BorrowingController()
         {
             dbcontext = new MongoDBContext();
-            borrowingCollection = dbcontext.database.GetCollection<BorrowingModel>("borrowing"); //we are getting collection //product is collection name
+            borrowingCollection = dbcontext.database.GetCollection<BorrowingModel>("borrowing"); 
             bookCollection = dbcontext.database.GetCollection<BookModel>("book");
         }
 
 
-        // GET: Product
+        // GET: Borrow
         public ActionResult Index()
         {
 
@@ -41,7 +41,7 @@ namespace LibrarySystemMVC.Controllers
             return View(borrowList);
         }
 
-        // GET: Product/Details/5
+        // GET: Borrow/Details/5
         public ActionResult Details(string id)
         {
 
@@ -50,7 +50,7 @@ namespace LibrarySystemMVC.Controllers
             return View(borrowing);
         }
 
-        // POST: Product/Create
+        // POST: Borrow/Create
         [HttpPost]
         public ActionResult Create(BorrowingModel borrowing)
         {
@@ -130,7 +130,7 @@ namespace LibrarySystemMVC.Controllers
         }
 
 
-        // GET: Product/Edit/5
+        // GET: Borrow/Edit/5
         public ActionResult Edit(string id)
         {
 
@@ -140,7 +140,7 @@ namespace LibrarySystemMVC.Controllers
 
         }
 
-        // POST: Product/Edit/5
+        // POST: Borrow/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, BorrowingModel borrowing)
         {
@@ -165,7 +165,7 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: Borrow/Delete/5
         public ActionResult Delete(string id)
         {
             var borrowingId = new ObjectId(id);
@@ -174,7 +174,7 @@ namespace LibrarySystemMVC.Controllers
 
         }
 
-        // POST: Product/Delete/5
+        // POST: Borrow/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
