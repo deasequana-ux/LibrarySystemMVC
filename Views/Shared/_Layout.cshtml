@@ -1,33 +1,54 @@
-﻿<!DOCTYPE html>
+﻿@*@model IEnumerable<LibrarySystemMVC.Models.UsersModel>*@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - My Library System</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <style>
+        li {
+            float: left;
+        }
+
+            li a {
+                display: block;
+                padding: 12px 14px;
+                color:crimson;
+            }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle btn btn-danger" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="bi bi-list"></i>
+                    @*<span class="icon-bar"></span>*@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            @Html.ActionLink("Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @*@if (Model.FirstOrDefault().UserRole == "Admin")
+            {*@
+                
+            @*}*@
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Book List", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Borrow List", "Index", "Borrowing")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("User List", "Index", "Users")</li>*@
+                    <li>@Html.ActionLink("Sign Up", "Register", "Users")</li>
+                    <li>@Html.ActionLink("Sign In", "Login", "Users")</li>
                 </ul>
             </div>
-            <form class="form-inline my-2 my-lg-0" asp-controller="Book" asp-action="Index" style="margin-left:900px; margin-top:-40px;">
+            <form class="form-inline my-2 my-lg-0" asp-controller="Book" asp-action="Index" style="margin-left:650px; margin-top:-30px;">
                 <input name="searchString" type="text" class="form-control" placeholder="Search for a book..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </div>
@@ -39,8 +60,11 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

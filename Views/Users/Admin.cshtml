@@ -1,0 +1,20 @@
+﻿@model IEnumerable<LibrarySystemMVC.Models.UsersModel>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>ADMIN PAGE</h2>
+
+@*MAVİ BUTONU BURAYA KOY EĞER ADMIN GİRİŞİ YAPILIRSA DİREK BUNU ÇAĞIR*@
+
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Users
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/Book/Index">List of book</a>
+        <a class="dropdown-item" href="/Users/Index">List of user</a>
+        <a class="dropdown-item" href="/Users/Create">Create user</a>
+    </div>
+</div>

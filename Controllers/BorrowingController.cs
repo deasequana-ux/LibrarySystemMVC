@@ -90,7 +90,7 @@ namespace LibrarySystemMVC.Controllers
                     .Set("DueDate", borrowing.DueDate)
                     .Set("ReturnDate", borrowing.ReturnDate)
                     .Set("BookId", borrowing.Book)
-                    .Set("UserName", borrowing.UserName);
+                    .Set("User", borrowing.User);
 
 
 

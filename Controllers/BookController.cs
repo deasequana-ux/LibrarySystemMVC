@@ -14,6 +14,7 @@ using MongoDB.Driver.Linq;
 
 namespace LibrarySystemMVC.Controllers
 {
+    //[Authorize(Roles = UserRoles.Admin)]
     public class BookController : Controller
     {
         private MongoDBContext dbcontext;

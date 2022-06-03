@@ -138,7 +138,6 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BorrowingController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -311,8 +310,9 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Borrowing\Create.cshtml" />
-    <Content Include="Views\Login\Details.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

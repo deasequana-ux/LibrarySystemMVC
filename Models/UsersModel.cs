@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using MongoDB.Bson;
@@ -11,26 +12,17 @@ namespace LibrarySystemMVC.Models
         [BsonId]     
         public ObjectId UserId { get; set; }
 
-        [BsonElement("UserName")]
-        public string UserName { get; set; }
-
-        [BsonElement("UserSurname")]
-        public string UserSurname { get; set; }
-
-        [BsonElement("UserPhoneNumber")]
-        public string UserPhoneNumber { get; set; }
-
-        [BsonElement("UserAddress")]
-        public string UserAddress { get; set; }
-
-        [BsonElement("User_Name")]
-        public string User_Name { get; set; }
-
+        [Required(ErrorMessage = "Please enter your email")]
         [BsonElement("UserEmail")]
         public string UserEmail { get; set; }
 
+        [Required(ErrorMessage = "Please enter your password")]
         [BsonElement("UserPassword")]
         public string UserPassword { get; set; }
+
+        [Required(ErrorMessage = "Please select your role")]
+        [BsonElement("UserRole")]
+        public string UserRole { get; set; }
 
     }
 }

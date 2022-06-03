@@ -26,8 +26,8 @@ namespace LibrarySystemMVC.Models
         public BookModel Book { get; set; }
         
 
-        [BsonElement("UserName")]
-        public UsersModel UserName { get; set; }
+        [BsonElement("User")]
+        public UsersModel User { get; set; }
 
 
     }

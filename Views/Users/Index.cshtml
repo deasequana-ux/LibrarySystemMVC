@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>ADMIN - LIST OF USER</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,26 +12,15 @@
 <table class="table">
     <tr>
         <th>
-            Name
+            Email
 
-        </th>
-        <th>
-            Surname
-
-        </th>
-        <th>
-            Phone Number
-
-        </th>
-        <th>
-            Address
-
-        <th>
-            Username
-
-        </th>
+        </th> 
         <th>
             Password
+
+        </th>
+        <th>
+            User Role
 
         </th>
         <th></th>
@@ -40,24 +29,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(model => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.UserSurname)
-
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.UserPhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.UserAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.User_Name)
-
+            @Html.DisplayFor(model => item.UserEmail)
         </td>
         <td>
             @Html.DisplayFor(model => item.UserPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.UserRole)
         </td>
 
         <td>

@@ -9,6 +9,7 @@ using MongoDB.Driver.Core;
 using LibrarySystemMVC.App_Start;     //for handling  error and including this page as start coz controller is everything manage
 using MongoDB.Driver;
 using LibrarySystemMVC.Models;
+using System.Web.Security;
 
 namespace LibrarySystemMVC.Controllers
 {
@@ -22,14 +23,13 @@ namespace LibrarySystemMVC.Controllers
         public UsersController()
         {
             dbcontext = new MongoDBContext();
-            userCollection = dbcontext.database.GetCollection<UsersModel>("user"); //we are getting collection //product is collection name
+            userCollection = dbcontext.database.GetCollection<UsersModel>("user");
         }
 
 
         public ActionResult Index()
         {
 
-            // this is something(all list from prodect model) we returning back
             List<UsersModel> users = userCollection.AsQueryable<UsersModel>().ToList();
             return View(users);
         }
@@ -38,7 +38,7 @@ namespace LibrarySystemMVC.Controllers
         {
 
             var userId = new ObjectId(id);
-            var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);    
+            var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);
             return View(user);
         }
 
@@ -52,8 +52,7 @@ namespace LibrarySystemMVC.Controllers
         {
             try
             {
-
-                userCollection.InsertOne(user);      
+                userCollection.InsertOne(user);
                 return RedirectToAction("Index");
             }
             catch
@@ -68,7 +67,7 @@ namespace LibrarySystemMVC.Controllers
             var userId = new ObjectId(id);
             var user = userCollection.AsQueryable<UsersModel>().SingleOrDefault(x => x.UserId == userId);
             return View(user);
-           
+
         }
 
         [HttpPost]
@@ -79,9 +78,9 @@ namespace LibrarySystemMVC.Controllers
                 // TODO: Add update logic here
                 var filter = Builders<UsersModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<UsersModel>.Update
-                    .Set("UserName", user.UserName)
-                    .Set("UserSurname", user.UserSurname)
-                    .Set("AuthorEmail", user.User_Name);
+                    .Set("UserEmail", user.UserEmail)
+                    .Set("UserPassword", user.UserPassword)
+                    .Set("UserRole", user.UserRole);
 
                 var result = userCollection.UpdateMany(filter, update);
                 return RedirectToAction("Index");
@@ -112,6 +111,74 @@ namespace LibrarySystemMVC.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Login()
+        {
+            if (String.IsNullOrEmpty(HttpContext.User.Identity.Name))
+            {
+                FormsAuthentication.SignOut();
+                return View();
+            }
+            return Redirect("/Users/Admin");
+
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsersModel users)
+        {
+            var response = userCollection.AsQueryable<UsersModel>().FirstOrDefault(x => x.UserEmail == users.UserEmail && x.UserPassword == users.UserPassword && x.UserRole == users.UserRole);
+            if (response != null)
+            {
+                FormsAuthentication.SetAuthCookie(users.UserEmail, false);
+                if (users.UserRole == "Admin")
+                {
+                    return RedirectToAction("Admin", "Users");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Book");
+                }
+
+            }
+            else
+            {
+                ViewBag.msg = "Wrong credentials!";
+                return View();
+            }
+
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(UsersModel user)
+        {
+            try
+            {
+                userCollection.InsertOne(user);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();  //Kullanıcıya çıkış yaptırdık 
+            return RedirectToAction("Login");
         }
     }
 }
