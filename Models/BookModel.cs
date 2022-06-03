@@ -44,6 +44,8 @@ namespace LibrarySystemMVC.Models
 
         [BsonElement("PublishYear")]
         public int PublishYear { get; set; }
+
+        //public IList<UsersModel> Users { get; }  //to-many relationship 
     }
     
 }

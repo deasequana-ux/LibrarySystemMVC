@@ -347,6 +347,8 @@
     <Content Include="Views\UBook\Details.cshtml" />
     <Content Include="Views\UBook\Index.cshtml" />
     <Content Include="Views\UBook\Logout.cshtml" />
+    <Content Include="Views\Users\Borrow.cshtml" />
+    <Content Include="Views\Book\Borrow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,21 +14,17 @@ namespace LibrarySystemMVC.Models
         [BsonElement("BorrowDate")] //Ödünç alınan tarih
         public string BorrowDate { get; set; }
 
-        [BsonElement("DueDate")] //bitiş tarihi
-        public string DueDate { get; set; }
-
         [BsonElement("ReturnDate")] //teslim ettiği tarih
         public string ReturnDate { get; set; }
-        public BookModel BookInfo { get; set; }
-        //public PublisherModel PublisherInfo { get; set; } //publisher does the financial thinking
-        //public UsersModel UsersInfo { get; set; }
+
         [BsonElement("Book")]
-        public BookModel Book { get; set; }
-        
+        public string BookId { get; set; }
+
+        [BsonElement("BookName")]
+        public string BookName { get; set; }
 
         [BsonElement("User")]
-        public UsersModel User { get; set; }
-
+        public string UserId { get; set; }
 
     }
 }

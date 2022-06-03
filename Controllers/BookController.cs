@@ -19,13 +19,15 @@ namespace LibrarySystemMVC.Controllers
     {
         private MongoDBContext dbcontext;
         private IMongoCollection<BookModel> bookCollection;
+        private IMongoCollection<BorrowingModel> borrowCollection;
 
         //for grid controller
 
         public BookController()
         {
             dbcontext = new MongoDBContext();
-            bookCollection = dbcontext.database.GetCollection<BookModel>("book"); 
+            bookCollection = dbcontext.database.GetCollection<BookModel>("book");
+            borrowCollection = dbcontext.database.GetCollection<BorrowingModel>("borrowing"); 
         }
 
 
@@ -36,6 +38,8 @@ namespace LibrarySystemMVC.Controllers
             
             {
                 List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
+
+                List<BorrowingModel> borrows = borrowCollection.AsQueryable<BorrowingModel>().ToList();
 
                 if (!string.IsNullOrEmpty(searchString))
                 {
@@ -152,6 +156,18 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
-        
+        public ActionResult Borrow(/*string id, BookModel book*/)
+        {
+            //var filter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(id));
+            var book = new BookModel();
+            book.Users.Add(new UsersModel
+            {
+               UserEmail= "user@gmail.com",
+               UserPassword= "123",
+               UserRole = "user"
+            });
+            return View();
+        }
+
     }
 }

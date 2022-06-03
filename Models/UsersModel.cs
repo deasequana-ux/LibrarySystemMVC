@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace LibrarySystemMVC.Models
 {
-    public class UsersModel
+    public class UsersModel 
     {
         [BsonId]     
         public ObjectId UserId { get; set; }
@@ -23,6 +23,8 @@ namespace LibrarySystemMVC.Models
         [Required(ErrorMessage = "Please select your role")]
         [BsonElement("UserRole")]
         public string UserRole { get; set; }
+
+        //public IList<BookModel> Books { get; }  //to-many relationship 
 
     }
 }

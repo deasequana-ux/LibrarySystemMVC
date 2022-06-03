@@ -91,6 +91,10 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                @if (item.NumberOfBook > 0)
+                {
+                    @Html.ActionLink("Borrow", "BorrowBook", "Borrowing", new { BookId = item.BookId.ToString(), BookName = item.BookName }, null)
+                }
             </td>
 
         </tr>

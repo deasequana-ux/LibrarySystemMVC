@@ -17,6 +17,7 @@ namespace LibrarySystemMVC.Controllers
     {
         private MongoDBContext dbcontext;
         private IMongoCollection<UsersModel> userCollection;
+        private IMongoCollection<BookModel> bookCollection;
 
 
 
@@ -24,6 +25,7 @@ namespace LibrarySystemMVC.Controllers
         {
             dbcontext = new MongoDBContext();
             userCollection = dbcontext.database.GetCollection<UsersModel>("user");
+            bookCollection = dbcontext.database.GetCollection<BookModel>("book");
         }
 
 
@@ -60,6 +62,7 @@ namespace LibrarySystemMVC.Controllers
                 return View();
             }
         }
+
 
         public ActionResult Edit(string id)
         {
@@ -133,13 +136,16 @@ namespace LibrarySystemMVC.Controllers
                 FormsAuthentication.SetAuthCookie(users.UserEmail, false);
                 if (users.UserRole == "Admin")
                 {
+                    // Set user id to session
+                    Session["UserId"] = response.UserId.ToString();
                     return RedirectToAction("Admin", "Users");
                 }
                 else
                 {
-                    return RedirectToAction("Index", "UBook");
+                    // Set user id to session
+                    Session["UserId"] = response.UserId.ToString();
+                    return RedirectToAction("Index", "Book");
                 }
-
             }
             else
             {
@@ -180,5 +186,35 @@ namespace LibrarySystemMVC.Controllers
             FormsAuthentication.SignOut();  //Kullanıcıya çıkış yaptırdık 
             return RedirectToAction("Login");
         }
+
+        
+
+        //public ActionResult Borrow(string id)
+        //{
+        //    var bookId = new ObjectId(id);
+        //    var book = bookCollection.AsQueryable<BookModel>().SingleOrDefault(x => x.BookId == bookId);
+        //    return View(book);
+        //}
+
+        //public ActionResult Borrow(/*string id, BookModel book*/)
+        //{
+        //    //var filter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(id));
+        //    var user= new UsersModel();
+        //    user.Books.Add(new BookModel
+        //    {
+        //        ISBNNO = 12313,
+        //        BookName = "deneme",
+        //        PageNumber = 122,
+        //        Language = "english",
+        //        Category = "Novel",
+        //        NumberOfBook = 2,
+        //        Editor = "Aras Bulut",
+        //        Edition = 3,
+        //        Author = "Damla Topçu",
+        //        Publisher = "Hilal Yüce",
+        //        PublishYear = 1999
+        //    });
+        //    return View();
+        //}
     }
 }

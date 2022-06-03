@@ -16,6 +16,7 @@ namespace LibrarySystemMVC.Controllers
     {
         private MongoDBContext dbcontext;
         private IMongoCollection<BorrowingModel> borrowingCollection;
+        private IMongoCollection<BookModel> bookCollection;
 
         //for grid controller
 
@@ -23,6 +24,7 @@ namespace LibrarySystemMVC.Controllers
         {
             dbcontext = new MongoDBContext();
             borrowingCollection = dbcontext.database.GetCollection<BorrowingModel>("borrowing"); //we are getting collection //product is collection name
+            bookCollection = dbcontext.database.GetCollection<BookModel>("book");
         }
 
 
@@ -32,7 +34,11 @@ namespace LibrarySystemMVC.Controllers
 
             // this is something(all list from prodect model) we returning back
             List<BorrowingModel> borrowings = borrowingCollection.AsQueryable<BorrowingModel>().ToList();
-            return View(borrowings);
+            var userId = Session["UserId"] as string;
+
+            var borrowList = borrowings.Where(b => b.UserId == userId).ToList();
+
+            return View(borrowList);
         }
 
         // GET: Product/Details/5
@@ -42,12 +48,6 @@ namespace LibrarySystemMVC.Controllers
             var borrowingId = new ObjectId(id);
             var borrowing = borrowingCollection.AsQueryable<BorrowingModel>().SingleOrDefault(x => x.Id == borrowingId);
             return View(borrowing);
-        }
-
-        // GET: Product/Create
-        public ActionResult Create()
-        {
-            return View();
         }
 
         // POST: Product/Create
@@ -66,6 +66,69 @@ namespace LibrarySystemMVC.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult BorrowBook(string BookId, string BookName)
+        {
+            var userId = Session["UserId"] as string;
+
+            var borrowModel = new BorrowingModel()
+            {
+                BookId = BookId,
+                BorrowDate = DateTime.Now.ToString("dd:MMM:yyyy"),
+                BookName = BookName,
+                UserId = userId,
+            };
+
+            // add to db
+            borrowingCollection.InsertOne(borrowModel);
+
+
+            List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
+            var bookCount = books.FirstOrDefault(b => b.BookId.ToString() == BookId).NumberOfBook - 1;
+
+            var bookFilter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(BookId));
+            var update = Builders<BookModel>.Update
+                .Set("NumberOfBook", bookCount);
+
+
+
+
+            var result = bookCollection.UpdateMany(bookFilter, update);
+
+            return RedirectToAction("Index", "Book");
+
+        }
+
+        public ActionResult ReturnBook(string BookId)
+        {
+            var userId = Session["UserId"] as string;
+            List<BorrowingModel> borrowings = borrowingCollection.AsQueryable<BorrowingModel>().ToList();
+
+            var relatedBorrowing = borrowings.FirstOrDefault(b => b.BookId == BookId && b.UserId == userId);
+
+            var filter = Builders<BorrowingModel>.Filter.Eq("_id", ObjectId.Parse(relatedBorrowing.Id.ToString()));
+            var borrowModel = Builders<BorrowingModel>.Update
+                    .Set("ReturnDate", DateTime.Now.ToString("dd:MMM:yyyy"))
+                    .Set("BookId", relatedBorrowing.BookId)
+                    .Set("User", relatedBorrowing.UserId);
+
+
+            var x = borrowingCollection.UpdateMany(filter, borrowModel);
+
+            List<BookModel> books = bookCollection.AsQueryable<BookModel>().ToList();
+            var bookCount = books.FirstOrDefault(b => b.BookId.ToString() == BookId).NumberOfBook + 1;
+
+            var bookFilter = Builders<BookModel>.Filter.Eq("_id", ObjectId.Parse(BookId));
+            var update = Builders<BookModel>.Update
+                .Set("NumberOfBook", bookCount);
+
+            var result = bookCollection.UpdateMany(bookFilter, update);
+
+            return RedirectToAction("Index", "Borrowing");
+
+        }
+
 
         // GET: Product/Edit/5
         public ActionResult Edit(string id)
@@ -87,10 +150,9 @@ namespace LibrarySystemMVC.Controllers
                 var filter = Builders<BorrowingModel>.Filter.Eq("_id", ObjectId.Parse(id));
                 var update = Builders<BorrowingModel>.Update
                     .Set("BorrowDate", borrowing.BorrowDate)
-                    .Set("DueDate", borrowing.DueDate)
                     .Set("ReturnDate", borrowing.ReturnDate)
-                    .Set("BookId", borrowing.Book)
-                    .Set("User", borrowing.User);
+                    .Set("BookId", borrowing.BookId)
+                    .Set("User", borrowing.UserId);
 
 
 

@@ -28,9 +28,9 @@ namespace LibrarySystemMVC.Controllers
 
         public ActionResult Index()
         {
-
             // this is something(all list from prodect model) we returning back
             List<LoginModel> logins = loginCollection.AsQueryable<LoginModel>().ToList();
+
             return View(logins);
         }
 
