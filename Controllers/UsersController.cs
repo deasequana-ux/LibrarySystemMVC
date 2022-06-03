@@ -137,7 +137,7 @@ namespace LibrarySystemMVC.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Book");
+                    return RedirectToAction("Index", "UBook");
                 }
 
             }

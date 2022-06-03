@@ -135,6 +135,7 @@ namespace LibrarySystemMVC.Controllers
 
         }
 
+
         // POST: Book/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
@@ -151,5 +152,6 @@ namespace LibrarySystemMVC.Controllers
             }
         }
 
+        
     }
 }

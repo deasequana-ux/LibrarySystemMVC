@@ -135,6 +135,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MongoDBContext.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UBookController.cs" />
+    <Compile Include="Controllers\IBookController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\BorrowingController.cs" />
@@ -145,6 +148,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UBookModel.cs" />
+    <Compile Include="Models\IBookModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\BorrowingModel.cs" />
@@ -166,10 +171,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\bootstrap-grid.css" />
+    <Content Include="css\bootstrap-grid.min.css" />
+    <Content Include="css\bootstrap-reboot.css" />
+    <Content Include="css\bootstrap-reboot.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\book.jpg" />
+    <Content Include="img\flyingbooks.jpg" />
+    <Content Include="img\helloo.jpg" />
+    <Content Include="js\bootstrap.bundle.js" />
+    <Content Include="js\bootstrap.bundle.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -178,6 +196,16 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="css\bootstrap-grid.css.map" />
+    <Content Include="css\bootstrap-grid.min.css.map" />
+    <Content Include="css\bootstrap-reboot.css.map" />
+    <Content Include="css\bootstrap-reboot.min.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="css\bootstrap.min.css.map" />
+    <Content Include="js\bootstrap.bundle.js.map" />
+    <Content Include="js\bootstrap.bundle.min.js.map" />
+    <Content Include="js\bootstrap.js.map" />
+    <Content Include="js\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -313,6 +341,12 @@
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Admin.cshtml" />
+    <Content Include="Views\IBook\Details.cshtml" />
+    <Content Include="Views\IBook\Index.cshtml" />
+    <Content Include="Views\Users\Logout.cshtml" />
+    <Content Include="Views\UBook\Details.cshtml" />
+    <Content Include="Views\UBook\Index.cshtml" />
+    <Content Include="Views\UBook\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

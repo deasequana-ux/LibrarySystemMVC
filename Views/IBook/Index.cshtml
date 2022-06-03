@@ -5,11 +5,27 @@
 }
 <br />
 <br />
-<h2>List Of Book</h2>
+@*<h2>List Of Book</h2>*@
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<div class="list-group" style="width: 18rem;">
+    <div class="list-body">
+        <h5 class="card-title">List of Book</h5>
+        @*<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>*@
+        <p class="isbnno">ISBN NO</p>
+        <p class="bookname">Book Name</p>
+        <p class="pagenumber">Page Number</p>
+        <p class="language">Language</p>
+        <p class="category">Category</p>
+        <p class="numberofbook">Number of Book</p>
+        <p class="author">Author</p>
+        @*<a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>*@
+    </div>
+</div>
 
 <br />
 <table class="table">
@@ -87,17 +103,16 @@
             <td>
                 @Html.DisplayFor(model => item.PublishYear)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
-            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                </td>*@
 
         </tr>
     }
 
 </table>
 
-<p>
-    @Html.ActionLink("Logout", "Users")
-</p>
+
+
